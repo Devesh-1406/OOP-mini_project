@@ -1,0 +1,41 @@
+// Module5_GUI.java
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Module5_GUI extends JFrame {
+    private JTextField barcodeField;
+    private JTextArea displayArea;
+
+    public Module5_GUI() {
+        setTitle("Inventory Management - Barcode Scanning");
+        setSize(400, 250);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JLabel label = new JLabel("Enter Barcode:");
+        barcodeField = new JTextField(10);
+        JButton scanButton = new JButton("Scan");
+        displayArea = new JTextArea(5, 30);
+
+        scanButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String barcode = barcodeField.getText();
+                displayArea.append("Scanned Barcode: " + barcode + "\n");
+                displayArea.append("Product found: Wireless Mouse\n\n");
+            }
+        });
+
+        JPanel panel = new JPanel();
+        panel.add(label);
+        panel.add(barcodeField);
+        panel.add(scanButton);
+        panel.add(new JScrollPane(displayArea));
+
+        add(panel);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new Module5_GUI();
+    }
+}
