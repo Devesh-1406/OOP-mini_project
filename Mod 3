@@ -1,0 +1,29 @@
+// Module3_GenericsThreads.java
+class Inventory<T> {
+    private T item;
+    public Inventory(T item) { this.item = item; }
+    public void display() { System.out.println("Inventory item: " + item); }
+}
+
+class BarcodeScanner extends Thread {
+    private String productName;
+    public BarcodeScanner(String productName) { this.productName = productName; }
+    public void run() {
+        System.out.println("Scanning product: " + productName);
+        try { Thread.sleep(1000); } catch (InterruptedException e) { }
+        System.out.println("Scan complete for: " + productName);
+    }
+}
+
+public class Module3_GenericsThreads {
+    public static void main(String[] args) {
+        Inventory<String> item = new Inventory<>("Laptop - BC500");
+        item.display();
+
+        BarcodeScanner s1 = new BarcodeScanner("Keyboard");
+        BarcodeScanner s2 = new BarcodeScanner("Monitor");
+
+        s1.start();
+        s2.start();
+    }
+}
