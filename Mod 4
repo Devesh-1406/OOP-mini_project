@@ -1,0 +1,25 @@
+// Module4_NetworkJDBC.java
+import java.net.*;
+import java.sql.*;
+
+public class Module4_NetworkJDBC {
+    public static void main(String[] args) {
+        try {
+            InetAddress addr = InetAddress.getLocalHost();
+            System.out.println("Connected to inventory server: " + addr.getHostName());
+            System.out.println("IP Address: " + addr.getHostAddress());
+        } catch (Exception e) {
+            System.out.println("Network error: " + e.getMessage());
+        }
+
+        System.out.println("\nSimulating JDBC connection...");
+        try {
+            // Simulating database behavior
+            System.out.println("Connecting to InventoryDB...");
+            System.out.println("Executing query: SELECT * FROM Products;");
+            System.out.println("Retrieved 3 product records.");
+        } catch (Exception e) {
+            System.out.println("Database connection failed.");
+        }
+    }
+}
