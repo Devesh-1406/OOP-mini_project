@@ -1,0 +1,44 @@
+// Module1_OOP.java
+abstract class Product {
+    protected String name;
+    protected String barcode;
+    protected double price;
+    private static int totalProducts = 0;
+
+    public Product(String name, String barcode, double price) {
+        this.name = name;
+        this.barcode = barcode;
+        this.price = price;
+        totalProducts++;
+    }
+
+    public abstract void displayProductInfo();
+
+    public static int getTotalProducts() {
+        return totalProducts;
+    }
+
+    @Override
+    protected void finalize() {
+        System.out.println("Finalizing product object: " + name);
+    }
+}
+
+class ElectronicItem extends Product {
+    public ElectronicItem(String name, String barcode, double price) {
+        super(name, barcode, price);
+    }
+
+    @Override
+    public void displayProductInfo() {
+        System.out.println("Product: " + name + ", Barcode: " + barcode + ", Price: ₹" + price);
+    }
+}
+
+public class Module1_OOP {
+    public static void main(String[] args) {
+        ElectronicItem e1 = new ElectronicItem("Bluetooth Speaker", "BC12345", 2499.00);
+        e1.displayProductInfo();
+        System.out.println("Total products: " + Product.getTotalProducts());
+    }
+}
