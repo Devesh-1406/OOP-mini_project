@@ -1,0 +1,26 @@
+// Module2_ExceptionStreams.java
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Module2_ExceptionStreams {
+    public static void main(String[] args) {
+        String[] products = {"BC101", "BC102", "BC103"};
+
+        try {
+            System.out.println("Scanning product: " + products[5]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error: Barcode not found in system!");
+        } finally {
+            System.out.println("Scan process completed.");
+        }
+
+        // Writing data into a file
+        try (FileWriter fw = new FileWriter("inventory_log.txt")) {
+            fw.write("Inventory Log - Product Entry\n");
+            fw.write("Product: Wireless Mouse | Barcode: BC105\n");
+            System.out.println("Inventory log successfully written to file.");
+        } catch (IOException e) {
+            System.out.println("File writing error: " + e.getMessage());
+        }
+    }
+}
